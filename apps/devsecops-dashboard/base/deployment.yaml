@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devsecops-dashboard
+  labels:
+    app.kubernetes.io/name: devsecops-dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: devsecops-dashboard
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: devsecops-dashboard
+    spec:
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+        - name: dashboard
+          image: 479858123318.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo/devsecops-dashboard
+          ports:
+            - containerPort: 8080
+              name: http
+          env:
+            - name: GITHUB_ORG
+              value: PwC-HK
+            - name: GITHUB_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: dashboard-github-token   # created out-of-band; never in git
+                  key: token
+          securityContext:
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          readinessProbe:
+            httpGet: { path: /healthz, port: http }
+          livenessProbe:
+            httpGet: { path: /healthz, port: http }
+          resources:
+            requests: { cpu: 50m, memory: 96Mi }
+            limits: { cpu: 250m, memory: 192Mi }

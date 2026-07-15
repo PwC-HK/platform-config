@@ -22,7 +22,7 @@ spec:
       containers:
         - name: podinfo
           # digest pinned per-overlay by ImageTagTransformer (image-digest.yaml)
-          image: ECR_REGISTRY/devsecops-demo/podinfo
+          image: 479858123318.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo/podinfo
           ports:
             - containerPort: 9898
               name: http

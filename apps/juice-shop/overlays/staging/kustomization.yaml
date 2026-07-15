@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: juice-shop-staging
+resources:
+  - ../../base
+transformers:
+  - image-digest.yaml # updated by CI digest-bump PRs; merging = deploying
