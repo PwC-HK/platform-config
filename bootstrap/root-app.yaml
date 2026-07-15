@@ -6,6 +6,8 @@ metadata:
   name: devsecops-demo
   namespace: openshift-gitops
 spec:
+  goTemplate: true
+  goTemplateOptions: ["missingkey=error"]
   generators:
     - git:
         repoURL: https://github.com/PwC-HK/platform-config.git
