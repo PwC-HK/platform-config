@@ -1,0 +1,7 @@
+apiVersion: builtin
+kind: ImageTagTransformer
+metadata:
+  name: image-digest
+imageTag:
+  name: 479858123318.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo/podinfo
+  digest: sha256:3b79740b932a3b33ac1ac19caf379bc759e41cfba31f9b6e05e435f3c68e2931
