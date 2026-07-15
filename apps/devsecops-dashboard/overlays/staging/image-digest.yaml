@@ -1,0 +1,7 @@
+apiVersion: builtin
+kind: ImageTagTransformer
+metadata:
+  name: image-digest
+imageTag:
+  name: 479858123318.dkr.ecr.ap-southeast-1.amazonaws.com/devsecops-demo/devsecops-dashboard
+  digest: sha256:25212c46714bec9a2991c5b9f6ca41190214a2f6d093bd44e9c331cbbca37544
